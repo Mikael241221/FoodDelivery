@@ -1,5 +1,7 @@
 import express from "express"
 import cors from "cors"
+import { connectDB } from "./config/db.js"
+import foodRouter from "./routes/foodRoute.js"
 
 
 
@@ -13,6 +15,11 @@ const port = 4000
 app.use(express.json())
 app.use(cors())
 
+// db connection
+connectDB()
+
+// api endpoints
+app.use("/api/food",foodRouter)
 
 app.get("/",(req,res)=>{
   res.send("API Working")
@@ -22,4 +29,3 @@ app.get("/",(req,res)=>{
 app.listen(port,()=>{
   console.log(`Server Started on http://localhost:${port}`)
 })
-//mongodb+srv://bashawdejenu1221:bd21211212@cluster0.wopwb.mongodb.net/?
