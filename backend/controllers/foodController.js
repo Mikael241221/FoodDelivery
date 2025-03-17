@@ -36,7 +36,7 @@ import fs from "fs";
   }
   }
    
-  // all listFood list 
+  // all listFood list items 
   const listFood = async(req, res) => {
     try {
       const foods = await foodModel.find({})
