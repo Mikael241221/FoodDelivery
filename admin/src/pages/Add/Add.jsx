@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Add.css'
 import { assets } from '../../assets/assets'
 import axios from "axios"
+import { toast } from 'react-toastify'
 
 const Add = () => {
     const url = "http://localhost:4001"
@@ -25,6 +26,7 @@ const Add = () => {
         formData.append("price",Number(data.price))
         formData.append("category",data.category)
         formData.append("image",image)
+        try{
         const response = await axios.post(`${url}/api/food/add`,formData)
         if(response.data.success){
                  setData({
@@ -34,10 +36,15 @@ const Add = () => {
                   category:"Salad"
               })
               setImage(false)
+              toast.success(response.data.message)
         }else{
 
         }
+    } catch(error){
+      console.error("submit failed:",error)
+      toast.error("failed to add product. check your server connection.")
     }
+  };
   return (
     <div className='add'>
         <form className="flex-col" onSubmit={onSubmitHandler}>
