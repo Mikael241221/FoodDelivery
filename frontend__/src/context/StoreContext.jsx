@@ -5,7 +5,9 @@ export const StoreContext = createContext(null)
 
 const StoreContextProvider = (props) => {
 
-  const [cartItems, setCartItems] = useState({})
+  const [cartItems, setCartItems] = useState({});
+  const url = "http://localhost:4001"
+  const [token, setToken] = useState(() => localStorage.getItem("token") || "");
 
 const addToCart = (itemId) => {
  
@@ -35,7 +37,10 @@ return totalAmount;
   setCartItems,
   addToCart,
   removeFromCart,
-  getTotalCartAmount
+  getTotalCartAmount,
+  url,
+  token,
+  setToken
 
   }
     return(
