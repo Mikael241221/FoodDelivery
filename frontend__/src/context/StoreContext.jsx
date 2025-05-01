@@ -1,4 +1,6 @@
 import { createContext, useEffect, useState } from "react";
+import axios from "axios";
+
 
 
 export const StoreContext = createContext(null)
@@ -8,7 +10,7 @@ const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const url = "http://localhost:4001"
   const [token, setToken] = useState(() => localStorage.getItem("token") || "");
-  const [food_list, setFoodList] =([]);
+  const [food_list, setFoodList] = useState([]);
 
 const addToCart = (itemId) => {
  
@@ -34,8 +36,11 @@ return totalAmount;
 }
 
 const fetchFoodList = async () => {
-  const response = await axios.get(url+"/api/food/list");
+ try{ const response = await axios.get(url+"/api/food/list");
   setFoodList(response.data.data)
+ } catch (error) {
+   console.error("Error fetching food list:", error);
+ }
 }
 
 useEffect(() =>{
