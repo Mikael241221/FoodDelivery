@@ -7,7 +7,7 @@ if(!token){
 }  
  try {
     const token_decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.body.user = token_decoded.id;
+    req.body.userId = token_decoded.id;
     next();
  }catch (error) {
     console.log(error);
