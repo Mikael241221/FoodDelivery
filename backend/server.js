@@ -9,7 +9,7 @@ import 'dotenv/config'
 
 // app config
 const app = express()
-const port = process.env.PORT-API || 4001
+const port = process.env.PORT_API || 4001
 
 
 // middleware
