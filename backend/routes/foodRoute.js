@@ -1,7 +1,7 @@
 import express from "express"
 import { addFood,listFood,removeFood } from "../controllers/foodController.js"
 import multer from "multer"
-import foodModel from "../models/FoodModel.js";
+
 
 const foodRouter = express.Router();
 
